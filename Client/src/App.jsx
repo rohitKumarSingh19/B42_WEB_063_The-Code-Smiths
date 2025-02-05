@@ -1,11 +1,14 @@
 import './App.css'
+import Footer from './Components/Footer'
 import Navbar from './Components/Navbar'
+import Banner from './Pages/Banner'
 
 function App() {
   return (
     <>
       <Navbar />
-      <h1 className='text-2xl font-bold'>VendoraX – <i className='font-normal'>A powerful vendor-centric platform</i></h1>
+      <Banner />
+      <Footer />
     </>
   )
 }
