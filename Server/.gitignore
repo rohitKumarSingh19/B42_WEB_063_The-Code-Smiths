@@ -1,0 +1,35 @@
+# Node.js dependencies
+/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+npm-debug.log
+
+# Environment variables
+.env
+
+# IDE or editor specific files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store       # macOS
+Thumbs.db       # Windows
+
+# Build directory
+/dist/
+/build/
+
+# MongoDB files
+/mongodb/
+
+# OS generated files
+ehthumbs.db
+
+# Other potentially sensitive or unnecessary files
+*.env
+*.local
+*.bak
