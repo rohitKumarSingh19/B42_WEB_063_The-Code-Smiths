@@ -1,63 +1,55 @@
-import {Product} from '../Models/Product.js';
-// Create Product
-export const createProduct = async (req, res) => {
-    try {
-        const product = new Product(req.body);
-        await product.save();
-        res.status(201).json(product);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
+import Product from '../Models/Product.js';
+
+// Get products with search, filtering, sorting, and pagination
+export const getProducts=async(req,res)=>{
+  try{
+    let {search,category,minPrice,maxPrice,rating,sortBy,order,page,limit}=req.query;
+    let filter={};
+    //search by the title or category(case-sensitive)
+    if(search){
+      filter.$or=[
+        {title:{$regex:search,$options:'i'}},
+        {category:{$regex:search,$options:'i'}},
+      ];
     }
-};
-// Get all products
-export const getAllProducts=async(req,res)=>{
-    try{
-        const products=await Product.find();
-        res.json(products);
-    }catch(error){
-        res.status(500).json({message:"Server error"})
+    //Filter by category
+    if(category){
+      filter.category=category;
     }
+    //filter by price
+    if(minPrice || maxPrice){
+      filter.price={};
+      if(minPrice) filter.price.$gte=Number(minPrice);
+      if(maxPrice) filter.price.$lte=Number(maxPrice);
+    }
+    //filter by rating
+    if(rating){
+      filter.rating={$gte:Number(rating)};
+    }
+    //sorting logic
+    let sortOptions={};
+    if(sortBy){
+      sortOptions[sortBy]=order==='desc'? -1:1;
+    }
+    //pagination setup
+    const pageNumber=Number(page)||1;
+    const pageSize=Number(limit)||10;
+    const skip=(pageNumber-1)*pageSize;
+    //fetch total count for pagination
+    const totalProducts=await Product.countDocuments(filter);
+    //Fetch products with applied filters,sorting, and pagination
+    const products=await Product.find(filter)
+    .sort(sortOptions)
+    .skip(skip)
+    .limit(pageSize);
+  //send response
+  res.json({
+    totalProducts,
+    page:pageNumber,
+    totalPages:Math.ceil(totalProducts/pageSize),
+    products,
+  });
+  }catch(error){
+    res.status(500).json({message:`Server error`,error:error.message});
+  }
 }
-// Get All Products (Filtering, Sorting)
-export const getProducts = async (req, res) => {
-    try {
-        let query = {};
-        if (req.query.search) {
-            query.name = { $regex: req.query.search, $options: 'i' };
-        }
-        if (req.query.category) {
-            query.category = req.query.category;
-        }
-
-        let sortQuery = {};
-        if (req.query.sortBy) {
-            sortQuery[req.query.sortBy] = req.query.order === 'desc' ? -1 : 1;
-        }
-
-        const products = await Product.find(query).sort(sortQuery);
-        res.json(products);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
-
-// Get Single Product
-export const getProductById = async (req, res) => {
-    try {
-        const product = await Product.findById(req.params.id);
-        if (!product) return res.status(404).json({ message: 'Product not found' });
-        res.json(product);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
-
-// Delete Product
-export const deleteProduct = async (req, res) => {
-    try {
-        await Product.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Product removed' });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};

@@ -14,7 +14,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Welcome to VendoraX API!' });
 });
-app.use('/api/products',productRoutes);
+app.use('/api/',productRoutes);
 // Use environment variable for port or fallback to 3000
 const PORT = process.env.PORT || 3000;
 // Start the server
