@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose'
-import {bcrypt} from 'bcrypt';
+import bcrypt from 'bcryptjs';
 // userSchema
 const userSchema = new Schema({
   username: { type: String, required: true, trim: true },
@@ -14,15 +14,10 @@ const userSchema = new Schema({
 // Hashing the password before Saving
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next()
-
-  try {
     const salt = await bcrypt.genSalt(10)
     this.password = await bcrypt.hash(this.password, salt)
-    next()
-  } catch (error) {
-    next(error)
-  }
+    next();
 })
 const User =model('User', userSchema);
 // export { user }
-export default User
+export default User;
