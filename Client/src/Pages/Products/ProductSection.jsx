@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
-import CardPallete from '../UI/Pallete/CardPallete';
 import { FaAngleRight } from 'react-icons/fa';
+import RecentProduct from './RecentProduct';
+import CategoryParoducts from './CategoryParoducts';
+import ExploreProducts from './ExploreProducts';
 
 export default function ProductSection() {
   return (
@@ -14,7 +16,9 @@ export default function ProductSection() {
           <FaAngleRight />
         </Link>
       </div>
-      <CardPallete />
+      <RecentProduct />
+      <CategoryParoducts />
+      <ExploreProducts />
     </div>
   );
 }
