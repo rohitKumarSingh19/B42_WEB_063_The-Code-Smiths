@@ -1,10 +1,10 @@
 import { model, Schema } from 'mongoose'
-
+import {bcrypt} from 'bcrypt';
 // userSchema
 const userSchema = new Schema({
   username: { type: String, required: true, trim: true },
   email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-  passowrd: { type: String, required: true },
+  password: { type: String, required: true },
   accountType: { type: String, enum: ['user', 'admin'], default: 'user' },
   joinedAt: { type: Date, default: new Date() }
 },
@@ -23,7 +23,6 @@ userSchema.pre('save', async function (next) {
     next(error)
   }
 })
-
-
-const user = new model('User', userSchema)
-export { user }
+const User =model('User', userSchema);
+// export { user }
+export default User
