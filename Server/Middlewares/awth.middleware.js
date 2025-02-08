@@ -1,6 +1,9 @@
+// Import jwt for token verification
 import jwt from "jsonwebtoken";
+// Import the User model
 import { user } from "../Models/User.model.js";
 
+// Middleware for authentication
 export const awth = async (req, res, next) => {
   let token = req.headers.authorization.split(" ")[1];
   if (!token) return res.send("token is not available");

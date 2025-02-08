@@ -1,13 +1,18 @@
+// Import express framework
 import express from "express";
+// Import product controllers
 import {
   showProducts,
   createProduct,
   updateProduct,
   deleteProduct,
 } from "../Controllers/product.controller.js";
+// Import upload middleware for handling file uploads
 import { upload } from "../Middlewares/upload.middleware.js";
+// Import authentication middleware
 import { awth } from "../middlewares/awth.middleware.js";
 
+// Create a new router instance
 const router = express.Router();
 
 // Route to get all products
@@ -23,4 +28,5 @@ router.patch("/update/:id", upload.single("image"), updateProduct);
 // Route to delete a product by ID
 router.delete("/delete/:id", deleteProduct);
 
+// Export the router
 export default router;

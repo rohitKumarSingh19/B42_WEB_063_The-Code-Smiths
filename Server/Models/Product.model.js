@@ -1,6 +1,7 @@
+// Import mongoose schema and model
 import { Schema, model } from "mongoose";
 
-// Product Schema
+// Define the product schema
 const productSchema = new Schema(
   {
     // Reference to the User model, representing the owner of the product

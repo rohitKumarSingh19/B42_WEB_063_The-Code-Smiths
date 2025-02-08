@@ -1,9 +1,14 @@
+// Import the User model
 import { user } from "../Models/User.model.js";
+// Import bcrypt for password hashing
 import bcrypt from "bcrypt";
+// Import jwt for token generation
 import jwt from "jsonwebtoken";
 
+// Get the salt rounds from environment variables
 const saltRounds = +process.env.SALT_ROUNDS;
 
+// Controller for user registration
 export const userRegister = (req, res) => {
   try {
     let password = req.body.password;
@@ -14,14 +19,15 @@ export const userRegister = (req, res) => {
 
       let userData = { ...req.body, password: hash };
       await user.create(userData);
-      res.send("registration successful");
+      res.status(201).send("registration successful");
     });
   } catch (error) {
-    console.log("registration failed");
+    res.status(500).send("registration failed");
     console.error(error);
   }
 };
 
+// Controller for user login
 export const userLogin = async (req, res) => {
   try {
     const userData = await user.findOne({ username: req.body.username });
@@ -47,7 +53,7 @@ export const userLogin = async (req, res) => {
 
           userData.token = jwtToken;
           await userData.save(); // Save the updated user document
-          res.json({ msg: "login success", token: jwtToken });
+          res.status(200).json({ msg: "login success", token: jwtToken });
         } else {
           res.status(401).send("username or password not matched");
         }
@@ -59,13 +65,14 @@ export const userLogin = async (req, res) => {
   }
 };
 
+// Controller for user logout
 export const userLogout = async (req, res) => {
   try {
     req.user.token = "";
     await req.user.save();
-    res.send("logout sucess");
+    res.status(200).send("logout success");
   } catch (error) {
-    res.send("logout again");
+    res.status(500).send("logout again");
     console.error(error);
   }
 };
