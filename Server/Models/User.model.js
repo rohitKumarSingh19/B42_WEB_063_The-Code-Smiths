@@ -1,9 +1,12 @@
+// Import mongoose model and schema
 import { model, Schema } from "mongoose";
 
-// userSchema
+// Define the user schema
 const userSchema = new Schema(
   {
+    // Username field, required, unique, and trimmed
     username: { type: String, required: true, unique: true, trim: true },
+    // Email field, required, unique, lowercase, and trimmed
     email: {
       type: String,
       required: true,
@@ -11,26 +14,18 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true,
     },
+    // Password field, required
     password: { type: String, required: true },
+    // Account type field, can be either 'user' or 'admin', default is 'user'
     accountType: { type: String, enum: ["user", "admin"], default: "user" },
+    // Joined date field, default is the current date
     joinedAt: { type: Date, default: new Date() },
+    // Token field, default is an empty string
     token: { type: String, default: "" },
   },
-  { timestamps: true }
+  { timestamps: true } // Automatically adds createdAt and updatedAt fields
 );
 
-// Hashing the password before Saving
-// userSchema.pre('save', async function (next) {
-//   if (!this.isModified('password')) return next()
-
-//   try {
-//     const salt = await bcrypt.genSalt(10)
-//     this.password = await bcrypt.hash(this.password, salt)
-//     next()
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
+// Create and export the User model
 const user = new model("User", userSchema);
 export { user };
