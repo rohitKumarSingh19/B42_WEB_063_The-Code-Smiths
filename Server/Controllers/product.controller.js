@@ -14,7 +14,7 @@ export const createProduct = async (req, res) => {
   try {
     let imgLoc = req.file ? req.file.path : null;
 
-    let productData = { ...req.body, image: imgLoc };
+    let productData = { ...req.body, image: imgLoc, owner: req.user._id };
     await Product.create(productData);
     res.send("product created");
   } catch (error) {
@@ -24,9 +24,17 @@ export const createProduct = async (req, res) => {
 };
 
 export const updateProduct = async (req, res) => {
-  const productData = await Product.findOne({ _id: req.params.id });
-
-  console.log(productData);
+  try {
+    let productData = await Product.findOne({ _id: req.params.id });
+    Object.assign(productData, req.body, {
+      image: req.file ? req.file.path : productData.image,
+    });
+    await productData.save();
+    res.send("product updated");
+  } catch (error) {
+    res.send("try again product not updated");
+    console.error(error);
+  }
 };
 
 export const deleteProduct = async (req, res) => {
