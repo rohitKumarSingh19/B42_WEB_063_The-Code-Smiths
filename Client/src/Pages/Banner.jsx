@@ -5,7 +5,7 @@ import banner3 from '../../src/assets/bannerImage2.webp';
 import banner4 from '../../src/assets/bannerImage3.jpg';
 import banner5 from '../../src/assets/bannerImage4.jpg';
 
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaRegClone } from "react-icons/fa";
 
 const bannerData = [banner1, banner2, banner3, banner4, banner5];
 
@@ -62,8 +62,9 @@ export default function Banner() {
       {/* Deal of the Day Component */}
       <div className="absolute right-1/6 sm:right-1/12  text-darkgray border-2 border-primary px-6 py-8 rounded-2xl shadow-lg flex flex-col items-center space-y-2 backdrop-blur-xl bg-white/30 border-opacity-30">
         <p className="text-lg sm:text-xl font-semibold">Deal Of The Day</p>
-        <span className="border-2 border-dotted border-white px-6 py-3 rounded-md text-xl sm:text-3xl font-bold text-yellow-400 bg-white shadow-md">
-          VENDO10
+        <span className="border-2 border-dotted border-white px-6 py-3 rounded-md text-xl sm:text-3xl font-bold text-yellow-400 bg-white shadow-md flex gap-4">
+          VENDO10<FaRegClone className='text-secondary' />
+
         </span>
         <i className="text-base sm:text-lg text-darkgray opacity-75">Grab Your Deal</i>
       </div>
