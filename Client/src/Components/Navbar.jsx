@@ -9,7 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth"
 
 
 export const Navbar = () => {
-  
+
   const [user] = useAuthState(auth);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -90,6 +90,10 @@ export const Navbar = () => {
           : "hidden"
           }`}
       >
+        <Link to='/business-account'>
+          Become A Seller
+        </Link>
+
         <Link
           to="/wishlist"
           className="flex gap-2 items-center hover:text-primary text-lg"
@@ -143,6 +147,6 @@ export const Navbar = () => {
           )}
         </div>
       </div>
-    </nav>
+    </nav >
   );
 };
