@@ -17,6 +17,7 @@ import Login from './Pages/Login';
 import ProductSection from './Pages/Products/ProductSection';
 import ProductDetails from './Pages/ProductDetails';
 import BusinessAccount from './Pages/BusinessAccount';
+import SellProductForm from './Pages/SellProductForm';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/cart" element={<h1>Cart</h1>} />
         <Route path="/profile" element={<h1>Profile</h1>} />
         <Route path="/business-account" element={<BusinessAccount />} />
+        <Route path="/product-form" element={<SellProductForm />} />
       </Routes>
       <Footer />
 
