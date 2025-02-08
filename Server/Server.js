@@ -5,7 +5,7 @@ dotenv.config();
 
 // Import express framework
 import express from "express";
-// Import corn to allow cross origin requests
+// Import cors to allow cross origin requests
 import cors from "cors";
 // Import database connection function
 import connectDB from "./DB/config.DB.js";
