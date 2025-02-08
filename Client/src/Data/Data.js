@@ -2,7 +2,7 @@ export const productData = [
   {
     "title": "Smartphone XYZ",
     "image": "https://static.vecteezy.com/system/resources/thumbnails/050/177/034/small/smart-watch-isolated-on-transparent-background-png.png",
-    "category": "Electronics",
+    "": "Electronics",
     "description": "The latest smartphone with cutting-edge technology, featuring a 6.5-inch OLED display, 128GB storage, and a 64MP camera.",
     "price": 799,
     "totalBuy": 150,
