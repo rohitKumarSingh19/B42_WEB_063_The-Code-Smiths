@@ -11,12 +11,26 @@ export const registerUser = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
-    //Hash password
+
+  
+  //Check if username already exists
+  const existingUsername=await User.findOne({username});
+  if(existingUsername){
+    return res.status(400).json({message:'Username already taken'});
+  }
+
+  // Hash password using bcrypt
+  const salt=await bcrypt.genSalt(10);
+  const hashedPassword=await bcrypt.hash(password,salt);
+
+
+
+    //Hash password using 
     //const salt = await bcrypt.genSalt(10);
     //const hashedPassword = await bcrypt.hash(password, salt);
     //Create user
-    //const newUser = new User({ username, email, password: hashedPassword });
-    const newUser = new User({ username, email, password });
+    const newUser = new User({ username, email, password: hashedPassword });
+    //const newUser = new User({ username, email, password });
     await newUser.save();
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
@@ -32,16 +46,15 @@ export const loginUser = async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials (User not found" });
     }
-    // console.log("Stored Password:", user.password); // Debugging stored password
-    // console.log("Entered Password:", password);
     //Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid credentials (Incorrect password)" });
     }
     //Generate JWT Token
+    //include 'role' inst JWT
     const token = jwt.sign(
-      { id: user._id, email: user.email },
+      { id: user._id, email: user.email,role:user.role},
       process.env.SECRET_KEY,
       { expiresIn: "1d" }
     );

@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 // import authRoutes from './API/routes/authRoutes.js';
 import authRoutes from './API/routes/authRoutes.js';
 import productRoutes from './API/routes/productRoutes.js'
+import protectedRoute from './API/routes/protectedRoute.js';
 // Load environment variables from .env file
 import cors from 'cors';
 dotenv.config();
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 });
 app.use('/api/auth',authRoutes)
 app.use('/api/products',productRoutes);
+app.use('/api/protectedRoute', protectedRoute);
 // Use environment variable for port or fallback to 3000
 const PORT = process.env.PORT || 3000;
 // Start the server
