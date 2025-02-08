@@ -5,6 +5,8 @@ dotenv.config();
 
 // Import express framework
 import express from "express";
+// Import corn to allow cross origin requests
+import cors from "cors";
 // Import database connection function
 import connectDB from "./DB/config.DB.js";
 // Import user routes
@@ -14,6 +16,10 @@ import productRouter from "./Routes/product.route.js";
 
 // Initialize express app
 const app = express();
+
+// Middleware to allow cross origin requests
+app.use(cors());
+
 // Middleware to parse JSON requests
 app.use(express.json());
 
