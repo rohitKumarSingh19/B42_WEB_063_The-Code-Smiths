@@ -10,9 +10,9 @@ export default function BusinessAccount() {
   const [isValidEmail, setIsValidEmail] = useState(true);
 
   const stats = [
-    { value: "11 Lakh+", description: "Trust VendoraX to sell online", color: "text-blue-600" },
-    { value: "14 Crore+", description: "Customers buying across India", color: "text-green-600" },
-    { value: "19000+", description: "Pincode Supported for delivery", color: "text-purple-600" },
+    { value: "11 Lakh+", description: "Trust VendoraX to sell online", color: "text-primary" },
+    { value: "14 Crore+", description: "Customers buying across India", color: "text-yellow-500" },
+    { value: "19000+", description: "Pincode Supported for delivery", color: "text-secondary" },
     { value: "700+", description: "Categories to sell online", color: "text-red-600" },
   ];
 
@@ -45,11 +45,11 @@ export default function BusinessAccount() {
         {/* Left Content */}
         <div className="flex-1 text-center md:text-left">
           <h1 className="text-3xl font-bold text-gray-800 leading-tight">
-            Sell Online to <span className="text-blue-600">1Cr+</span> Customers at{" "}
-            <span className="text-green-600">0% Commission</span>
+            Sell Online to <span className="text-secondary">1Cr+</span> Customers at{" "}
+            <span className="text-primary">0% Commission</span>
           </h1>
           <p className="text-gray-600 mt-3">
-            Become a <span className="font-semibold text-blue-500">VendoraX</span> seller and grow your business across
+            Become a <span className="font-semibold text-primary">VendoraX</span> seller and grow your business across
             India.
           </p>
           <p className="text-red-500 font-medium mt-2">No need of GSTIN</p>
@@ -57,7 +57,7 @@ export default function BusinessAccount() {
           {/* Call to Action Button */}
           <button
             onClick={() => setIsModalOpen(true)}
-            className="mt-5 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-blue-700 transition"
+            className="mt-5 bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:opacity-80 transition"
           >
             Start Selling Now
           </button>
@@ -112,7 +112,7 @@ export default function BusinessAccount() {
                   )}
                   <button
                     onClick={handleSubmit}
-                    className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                    className="w-full bg-primary text-white px-4 py-2 rounded-lg hover:opacity-80 transition"
                   >
                     Send
                   </button>
