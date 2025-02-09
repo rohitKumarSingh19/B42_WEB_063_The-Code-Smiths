@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { FiSearch, FiHeart, FiShoppingCart, FiUser, FiMenu, FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 
+import { useNavigate } from "react-router-dom";
+
+
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -18,6 +21,14 @@ export const Navbar = () => {
     // Fetch search suggestions based on the query
     // setSearchSuggestions(fetchSuggestions(e.target.value));
   };
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    navigate("/login"); // Redirect to login after logout
+  };
+
 
   return (
     <nav className="bg-white shadow-md py-4 px-6 md:px-10 flex items-center justify-between">
@@ -97,15 +108,35 @@ export const Navbar = () => {
         </Link>
 
         <Link
-          to={user ? "/profile" : "/login"}
-          className="flex gap-2 items-center  text-lg border px-4 py-2 rounded hover:bg-primary hover:text-white transition"
+          to="/profile"
+          className="flex gap-2 items-center hover:text-primary text-lg"
           onClick={() => setIsMenuOpen(false)}
         >
-          <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
-            <FiUser />
-          </motion.div>
-          <p>{user ? user.name : "Login"}</p>
+          <p className="">Profile</p>
         </Link>
+        <div>
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="flex gap-2 items-center text-lg border px-4 py-2 rounded hover:bg-primary hover:text-white transition"
+            >
+              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
+                <FiUser />
+              </motion.div>
+              <p>Logout</p>
+            </button>
+          ) : (
+            <Link
+              to={"/login"}
+              className="flex gap-2 items-center text-lg border px-4 py-2 rounded hover:bg-primary hover:text-white transition"
+            >
+              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
+                <FiUser />
+              </motion.div>
+              <p>Login</p>
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );
