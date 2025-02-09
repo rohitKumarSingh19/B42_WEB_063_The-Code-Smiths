@@ -38,6 +38,22 @@ function App() {
             <Footer />
         </>
     )
+import ProductSection from './Pages/Products/ProductSection';
+
+function App() {
+  return (
+    <>
+      <Navbar />
+      <Banner />
+      <Routes>
+        <Route path="/" element={<ProductSection />} />
+        <Route path="/wishlist" element={<h1>Wishlist</h1>} />
+        <Route path="/cart" element={<h1>Cart</h1>} />
+        <Route path="/profile" element={<h1>Profile</h1>} />
+      </Routes>
+      <Footer />
+    </>
+  )
 }
 
 export default App
