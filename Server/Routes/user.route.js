@@ -7,7 +7,7 @@ import {
   userLogout,
 } from "../Controllers/user.controller.js";
 // Import authentication middleware
-import { awth } from "../middlewares/awth.middleware.js";
+import { awth } from "../Middlewares/awth.middleware.js";
 
 // Create a new router instance
 const router = express.Router();
