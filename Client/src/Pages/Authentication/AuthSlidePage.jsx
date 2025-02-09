@@ -1,8 +1,9 @@
 // B42_WEB_063_The-Code-Smiths\Client\src\Pages\AuthSlidePage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaFacebookF, FaGooglePlusG, FaLinkedinIn } from 'react-icons/fa';
-import '../AuthSlideStyles.css';
+import "../../AuthSlideStyles.css"; // ✅ Adjust path based on actual file location
+
 
 // Dummy user database (in-memory for demonstration)
 const dummyUsers = []; // Initialize as empty array initially
@@ -55,9 +56,15 @@ const AuthSlidePage = ({ onLoginSuccess }) => {
                 alert('Account created successfully! Please sign in.'); // Replace with better UI feedback
                 setIsLoginActive(true); // Switch to login form after registration
                 setAuthError(''); // Clear any errors
+
+                // Clear input fields
+                setRegisterName('');
+                setRegisterEmail('');
+                setRegisterPassword('');
             }
         }, 1000); // Simulate 1 second API call delay
     };
+
 
 
     return (
@@ -65,11 +72,11 @@ const AuthSlidePage = ({ onLoginSuccess }) => {
             <div className={`auth-form-box ${isLoginActive ? 'login-active' : 'register-active'}`}>
                 {/* Login Form */}
                 <div className={`auth-form login-form ${isLoginActive ? 'active' : ''}`}>
-                    <div className="auth-left bg-[#5edab5] text-white">
+                    <div className="auth-left bg-[#0000FF] text-white">
                         <div className="welcome-content">
                             <h1 className="text-3xl md:text-4xl font-bold mb-6 text-white">Hello, Friend!</h1>
                             <p className="text-white mb-12 leading-relaxed text-lg opacity-80">Enter your personal details and start journey with us</p>
-                            <button onClick={handleToggleForm} type="button" className="bg-white text-[#5edab5] font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-colors duration-300 text-lg">Sign Up</button>
+                            <button onClick={handleToggleForm} type="button" className="bg-white text-[#0000FF] font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-colors duration-300 text-lg">Sign Up</button>
                         </div>
                     </div>
                     <div className="auth-right bg-white">
@@ -99,11 +106,11 @@ const AuthSlidePage = ({ onLoginSuccess }) => {
 
                 {/* Register Form */}
                 <div className={`auth-form register-form ${isLoginActive ? '' : 'active'}`}>
-                    <div className="auth-left bg-[#5edbb4] text-white">
+                    <div className="auth-left bg-[#0000FF] text-white">
                         <div className="welcome-content">
                             <h1 className="text-3xl md:text-4xl font-bold mb-6 text-white">Welcome Back!</h1>
                             <p className="text-white mb-12 leading-relaxed text-lg opacity-80">To keep connected with us please login with your personal info.</p>
-                            <button onClick={handleToggleForm} type="button" className="bg-white text-[#5edbb4] font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-colors duration-300 text-lg">Sign In</button>
+                            <button onClick={handleToggleForm} type="button" className="bg-white text-[#0000FF] font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-colors duration-300 text-lg">Sign In</button>
                         </div>
                     </div>
                     <div className="auth-right bg-white">
@@ -125,7 +132,7 @@ const AuthSlidePage = ({ onLoginSuccess }) => {
                                 <input type="email" placeholder="Email" className="auth-input" value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)} required />
                                 <input type="password" placeholder="Password" className="auth-input" value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} required />
                                 {authError && !isLoginActive && <p className="text-red-500 text-sm mb-2">{authError}</p>} {/* Display error for registration */}
-                                <button type="submit" className="auth-button bg-[#5edbb4] hover:bg-[#52c7a3]">Sign Up</button>
+                                <button type="submit" className="auth-button bg-[#0000FF] hover:bg-[#0000FF]">Sign Up</button>
                                 {authError && !isLoginActive && <p className="text-red-500 text-sm mt-2 text-center">{authError}</p>} {/* Display error for registration */}
                             </form>
                         </div>

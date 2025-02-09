@@ -6,7 +6,7 @@
     background-color: #f0f2f5;
     overflow: hidden;
     padding-top: 100px;
-    padding-bottom:100px
+    padding-bottom:200px;
 }
 
 .auth-form-box {
@@ -14,7 +14,6 @@
     width: 900px;
     height: 500px;
     background-color: white;
-    border-radius: 80px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     transition: transform 0.8s ease-in-out;
     overflow: hidden;
@@ -63,16 +62,9 @@
     align-items: center;
     width: 50%;
     padding: 2rem;
-    border-radius: inherit;
+    
 }
 
-.auth-left {
-    border-radius: 80px 0 0 80px;
-}
-
-.auth-right {
-    border-radius: 0 80px 80px 0;
-}
 
 .welcome-content {
     text-align: center;
@@ -148,7 +140,7 @@
     padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 8px;
-    background-color: #5edbb4;
+    background-color: #0000FF;
     color: white;
     font-weight: bold;
     font-size: 1.1rem;
@@ -157,7 +149,7 @@
 }
 
 .auth-button:hover {
-    background-color: #52c7a3;
+    background-color: #0000FF;
 }
 
 .auth-form.active {

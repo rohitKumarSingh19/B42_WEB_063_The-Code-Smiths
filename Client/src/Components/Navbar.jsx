@@ -2,15 +2,22 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch, FiHeart, FiShoppingCart, FiUser, FiMenu, FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
-
+import { auth } from "../firebaseConfig";
+import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth"
+
+
 
 
 export const Navbar = () => {
+
+  const [user] = useAuthState(auth);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
-  const user = null; // Replace with actual authentication logic
+  // const user = null; // Replace with actual authentication logic
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -85,6 +92,10 @@ export const Navbar = () => {
           : "hidden"
           }`}
       >
+        <Link to='/business-account'>
+          Become A Seller
+        </Link>
+
         <Link
           to="/wishlist"
           className="flex gap-2 items-center hover:text-primary text-lg"
@@ -138,6 +149,6 @@ export const Navbar = () => {
           )}
         </div>
       </div>
-    </nav>
+    </nav >
   );
 };

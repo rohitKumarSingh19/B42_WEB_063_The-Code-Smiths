@@ -4,12 +4,13 @@ import Footer from './Components/Footer';
 import { Navbar } from './Components/Navbar';
 import Banner from './Pages/Banner'; // Banner component
 import { Routes, Route } from "react-router-dom";
+
 import WishList from './Pages/WishList';
 import Profile from './Pages/Profile';
 import Cart from './Pages/Cart';
 import Home from './Pages/Home';
 import ProtectedRoute from './routes/ProtectedRoute';
-import AuthSlidePage from './Pages/AuthSlidePage'; // AuthSlidePage component
+import AuthSlidePage from './Pages/Authentication/AuthSlidePage'; // AuthSlidePage component
 // import WelcomePage from './Pages/WelcomePage';
 import { useState } from 'react';
 
