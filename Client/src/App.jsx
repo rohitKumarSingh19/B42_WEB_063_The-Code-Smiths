@@ -18,6 +18,7 @@ import ProductSection from './Pages/Products/ProductSection';
 import ProductDetails from './Pages/ProductDetails';
 import BusinessAccount from './Pages/BusinessAccount';
 import SellProductForm from './Pages/SellProductForm';
+import AddToCart from './Pages/Section/ShoppingCart';
 
 
 function App() {
@@ -29,11 +30,11 @@ function App() {
       <Routes>
         <Route path="/" element={<ProductSection />} />
         <Route path="/wishlist" element={<ProtectedRoute><WishList /></ProtectedRoute>} />
-        <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+        {/* <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} /> */}
         <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/login" element={<Login />} />
         <Route path="/product-details" element={<ProductDetails />} />
-        <Route path="/cart" element={<h1>Cart</h1>} />
+        <Route path="/cart" element={<AddToCart />} />
         <Route path="/profile" element={<h1>Profile</h1>} />
         <Route path="/business-account" element={<BusinessAccount />} />
         <Route path="/product-form" element={<SellProductForm />} />

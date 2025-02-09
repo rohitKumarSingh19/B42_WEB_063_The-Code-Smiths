@@ -31,8 +31,8 @@ VendoraX is a vendor-centric platform designed to streamline product management,
 ### 🛒 Product Selling Form  
 ![productForm Page](./Client/src/assets/productForm.png)  
 
-### 🔑 Authentication Page  
-![Auth Page](./assets/UI/authpage.png)  
+### 🔑 Shopping Cart Page  
+![Shopping Cart Page](./Client/src/assets/shoppingCart.png)  
 
 ---
 
