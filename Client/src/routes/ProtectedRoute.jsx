@@ -1,14 +1,31 @@
+// import React from 'react';
+// import { Navigate } from "react-router-dom";
+
+// const ProtectedRoute = ({ children }) => {
+//   // Placeholder authentication check (replace with your actual auth logic later)
+//   const isAuthenticated = false; // Set to 'true' to simulate logged-in user for testing
+
+//   if (!isAuthenticated) {
+//     // Redirect to login page if not authenticated
+//     return <Navigate to="/login" replace />;
+//   }
+
+//   // If authenticated, render the children components (the protected routes)
+//   return children;
+// };
+
+// export default ProtectedRoute;
+
+
+
+import React from 'react';
 import { Navigate } from "react-router-dom";
-import { auth } from "../firebaseConfig"; // Firebase auth
-import { useAuthState } from "react-firebase-hooks/auth";
 
-const ProtectedRoute = ({ children }) => {
-  const [user, loading] = useAuthState(auth);
-
-  if (loading) return <p>Loading...</p>; // Show a loading state while checking auth
-  if (!user) return <Navigate to="/login" replace />; // Redirect if not logged in
-
-  return children;
+const ProtectedRoute = ({ isLoggedIn, children }) => { // Receive isLoggedIn prop
+    if (!isLoggedIn) { // Use isLoggedIn prop for authentication check
+        return <Navigate to="/login" replace />;
+    }
+    return children;
 };
 
 export default ProtectedRoute;
