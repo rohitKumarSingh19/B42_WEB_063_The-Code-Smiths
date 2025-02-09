@@ -11,7 +11,7 @@ const router = express.Router();
 router.get(
   "/admin-only",
   verifyToken,  // Authentication middleware
-  roleAuthorization([roles.ADMIN]),  // Authorization middleware for admin role
+  roleAuthorization([roles.ADMIN,roles.USER]),  // Authorization middleware for admin role
   (req, res) => {
     res.json({ message: "Welcome, Admin! You have access to this route." });
   }
@@ -24,6 +24,15 @@ router.get(
   roleAuthorization([roles.ADMIN, roles.USER]),  // Authorization middleware for admin or user roles
   (req, res) => {
     res.json({ message: "Welcome! You have access to this route." });
+  }
+);
+// Vendor-only route
+router.get(
+  "/vendor-only",
+  verifyToken,
+  roleAuthorization([roles.VENDOR]),
+  (req, res) => {
+      res.json({ message: "Welcome, Vendor! You can manage your products." });
   }
 );
 

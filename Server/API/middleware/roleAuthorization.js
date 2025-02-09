@@ -1,22 +1,20 @@
-// API/middleware/roleAuthorization.js
-import roles from '../config/role.js';  // Import the roles from the roles.js file
-
+import roles from "../config/role.js"; 
 const roleAuthorization = (allowedRoles) => {
   return (req, res, next) => {
-    // Check if the user is authenticated and if req.user is available (from authentication middleware)
     if (!req.user) {
       return res.status(401).json({ message: "Unauthorized: User not authenticated" });
     }
 
-    // Get the user's role from req.user (attached by authentication middleware)
+    console.log("🔍 User Object in Request:", req.user); 
     const userRole = req.user.role;
+    
+    console.log("🔍 Extracted User Role:", userRole);  
+    console.log("✅ Allowed Roles for this route:", allowedRoles);
 
-    // Check if the user's role is in the allowed roles
-    if (!allowedRoles.includes(userRole)) {
-      return res.status(403).json({ message: 'Forbidden: Insufficient permissions' });
+    if (!userRole ||!allowedRoles.includes(userRole)) {
+      return res.status(403).json({ message: "Forbidden: Insufficient permissions" });
     }
 
-    // If user has the required role, allow access to the route
     next();
   };
 };
