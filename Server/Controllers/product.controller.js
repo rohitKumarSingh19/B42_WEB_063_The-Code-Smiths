@@ -1,5 +1,8 @@
 // Import the Product model
 import { Product } from "../Models/Product.model.js";
+// Import the fs module
+import fs from "fs";
+import path from "path";
 
 // Controller to show all products
 export const showProducts = async (req, res) => {
@@ -30,6 +33,10 @@ export const createProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
   try {
     let productData = await Product.findOne({ _id: req.params.id });
+    if (req.file && productData.image) {
+      // Delete the old image file
+      fs.unlinkSync(path.resolve(productData.image));
+    }
     Object.assign(productData, req.body, {
       image: req.file ? req.file.path : productData.image,
     });
@@ -44,6 +51,11 @@ export const updateProduct = async (req, res) => {
 // Controller to delete a product
 export const deleteProduct = async (req, res) => {
   try {
+    let productData = await Product.findOne({ _id: req.params.id });
+    if (productData.image) {
+      // Delete the image file
+      fs.unlinkSync(path.resolve(productData.image));
+    }
     await Product.findOneAndDelete({ _id: req.params.id });
     res.status(200).send("deletion successful");
   } catch (error) {
