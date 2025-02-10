@@ -119,7 +119,7 @@ export const Navbar = () => {
         </Link>
 
         <Link
-          to="/profile"
+          to="/admin-panel"
           className="flex gap-2 items-center hover:text-primary text-lg"
           onClick={() => setIsMenuOpen(false)}
         >

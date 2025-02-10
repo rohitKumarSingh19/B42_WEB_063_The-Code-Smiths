@@ -74,15 +74,15 @@ export default function SellProductForm() {
           <img
             src={seller}
             alt="seller"
-            className="w-full h-auto max-w-md transform hover:scale-105 transition-transform duration-300"
+            className="w-full scale-120 h-auto max-w-md transform hover:scale-105 transition-transform duration-300"
           />
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="absolute bottom-10 left-10 bg-white p-4 rounded-lg shadow-md"
+            className="absolute top-10 left-10 bg-white p-4 rounded-lg shadow-md"
           >
-            <p className="text-gray-800 font-semibold text-lg">Start Selling Today!</p>
+            <p className="font-semibold text-lg text-primary">Start Selling Today!</p>
             <p className="text-gray-600 text-sm">Reach millions of customers with VendoraX.</p>
           </motion.div>
         </motion.div>
@@ -94,7 +94,7 @@ export default function SellProductForm() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="md:w-1/2 p-10"
         >
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Sell Your Product</h2>
+          <h2 className="text-3xl font-bold text-primary mb-6">Sell Your Product</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Title */}
             <div>
@@ -104,7 +104,7 @@ export default function SellProductForm() {
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
               {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
             </div>
@@ -117,7 +117,7 @@ export default function SellProductForm() {
                 name="image"
                 value={formData.image}
                 onChange={handleChange}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
               {errors.image && <p className="text-red-500 text-sm mt-1">{errors.image}</p>}
             </div>
@@ -129,7 +129,7 @@ export default function SellProductForm() {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               >
                 <option value="">Select a category</option>
                 {categories.map((category, index) => (
@@ -149,7 +149,7 @@ export default function SellProductForm() {
                 value={formData.description}
                 onChange={handleChange}
                 rows="4"
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
               {errors.description && (
                 <p className="text-red-500 text-sm mt-1">{errors.description}</p>
@@ -164,7 +164,7 @@ export default function SellProductForm() {
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
               {errors.price && <p className="text-red-500 text-sm mt-1">{errors.price}</p>}
             </div>
@@ -177,7 +177,7 @@ export default function SellProductForm() {
                 name="discountedPrice"
                 value={formData.discountedPrice}
                 onChange={handleChange}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
               {errors.discountedPrice && (
                 <p className="text-red-500 text-sm mt-1">{errors.discountedPrice}</p>
@@ -194,7 +194,7 @@ export default function SellProductForm() {
                 onChange={handleChange}
                 min="0"
                 max="5"
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
               {errors.rating && <p className="text-red-500 text-sm mt-1">{errors.rating}</p>}
             </div>
@@ -203,7 +203,7 @@ export default function SellProductForm() {
             <div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition transform hover:scale-105"
+                className="w-full bg-primary text-white px-4 py-3 rounded-lg hover:opacity-80 transition transform hover:scale-105"
               >
                 Submit
               </button>
