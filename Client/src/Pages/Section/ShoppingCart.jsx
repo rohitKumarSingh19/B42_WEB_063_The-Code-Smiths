@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { IoHome } from "react-icons/io5";
 import { productData } from "../../Data/Data";
 import WisePalette from "../../UI/Pallete/WisePallete";
 import { Link } from "react-router-dom";
@@ -20,7 +21,7 @@ export default function ShoppingCart() {
           Shopping Cart <span className="text-primary text-xl">({cartItems.length} items)</span>
         </h1>
         <Link to="/" className="text-primary underline">
-          Continue Shopping
+          Continue Shoppingh
         </Link>
       </div>
 
@@ -40,7 +41,7 @@ export default function ShoppingCart() {
               />
             ))
           ) : (
-            <p className="text-center text-gray-500">Your cart is empty.</p>
+            <p className="text-center text-gray-500">Your Wishlist is empty.</p>
           )}
         </div>
 
