@@ -6,7 +6,7 @@ import { user } from "../Models/User.model.js";
 // Middleware for authentication
 export const awth = async (req, res, next) => {
   let token = req.headers.authorization.split(" ")[1];
-  if (!token) return res.send("token is not available");
+  if (!token) return res.status(401).send("token is not available");
 
   try {
     const decode = jwt.verify(token, process.env.JWT_SECURITY_KEY);
@@ -14,7 +14,7 @@ export const awth = async (req, res, next) => {
     req.user = userData;
     next();
   } catch (error) {
-    res.send("invalid token, login again");
+    res.status(401).send("invalid token, login again");
     console.error(error);
   }
 };

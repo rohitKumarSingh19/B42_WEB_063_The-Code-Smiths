@@ -10,7 +10,7 @@ import {
 // Import upload middleware for handling file uploads
 import { upload } from "../Middlewares/upload.middleware.js";
 // Import authentication middleware
-import { awth } from "../middlewares/awth.middleware.js";
+import { awth } from "../Middlewares/awth.middleware.js";
 
 // Create a new router instance
 const router = express.Router();
